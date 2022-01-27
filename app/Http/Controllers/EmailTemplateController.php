@@ -66,11 +66,12 @@ class EmailTemplateController extends Controller
                     return $btn;
                 })
                 ->editColumn('status', function($row) {
-                    $btn = '<input type="checkbox" id="'.$row->id.'" class="switch" data-toggle="switchbutton" ';
+                    $btn = '<label class="switch">';
+                    $btn .= '<input type="checkbox" id="'.$row->id.'" class="switch" ';
                     if ($row->status == "Active") {
                         $btn .= "checked";
                     }
-                    $btn .= '>';
+                    $btn .= '><span class="slider"></span></label>';
                     return $btn;
                 })
                 ->rawColumns(['status'=>'status','action' => 'action'])
