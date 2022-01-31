@@ -43,9 +43,36 @@ Route::get('admin/editMailTemp/{id}','App\Http\Controllers\EmailTemplateControll
 Route::post('admin/updateMailTemp','App\Http\Controllers\EmailTemplateController@updateMailTemp')->name('updateMailTemp');
 Route::get('admin/getId','App\Http\Controllers\EmailTemplateController@getId')->name('getId');
 
+//---Manage Blogs Routes---
+Route::get('admin/blog','App\Http\Controllers\BlogController@index')->name('blog');
+Route::get('admin/blogList','App\Http\Controllers\BlogController@blogList')->name('blogList');
+Route::post('admin/addBlogData','App\Http\Controllers\BlogController@addBlogData')->name('addBlogData');
+Route::get('admin/add_blog','App\Http\Controllers\BlogController@addBlog')->name('addBlog');
+Route::get('admin/getblogId','App\Http\Controllers\BlogController@getblogId')->name('getblogId');
+Route::get('admin/deleteBlog','App\Http\Controllers\BlogController@deleteBlog')->name('deleteBlog');
+Route::get('admin/editBlog/{id}','App\Http\Controllers\BlogController@editBlog')->name('editBlog');
+Route::post('admin/updateBlog','App\Http\Controllers\BlogController@updateBlog')->name('updateBlog');
+Route::get('admin/viewBlog/{id}','App\Http\Controllers\BlogController@viewBlog')->name('viewBlog');
+Route::get('admin/changeBlogStatus','App\Http\Controllers\BlogController@changeBlogStatus')->name('changeBlogStatus');
 
+//---Manage CMS Pages---
+Route::get('admin/cms','App\Http\Controllers\CmsController@index')->name('cms');
+Route::get('admin/cmsList','App\Http\Controllers\CmsController@cmsList')->name('cmsList');
+Route::get('admin/changeCmsStatus','App\Http\Controllers\CmsController@changeCmsStatus')->name('changeCmsStatus');
+Route::post('admin/addCmsData','App\Http\Controllers\CmsController@addCmsData')->name('addCmsData');
+Route::get('admin/add_cms','App\Http\Controllers\CmsController@addCms')->name('addCms');
+Route::get('admin/editCms/{id}','App\Http\Controllers\CmsController@editCms')->name('editCms');
+Route::post('admin/updateCms','App\Http\Controllers\CmsController@updateCms')->name('updateCms');
+Route::get('admin/getcmsId','App\Http\Controllers\CmsController@getcmsId')->name('getcmsId');
+Route::get('admin/deleteCms','App\Http\Controllers\CmsController@deleteCms')->name('deleteCms');
+Route::get('admin/viewCms/{id}','App\Http\Controllers\CmsController@viewCms')->name('viewCms');
+
+//---Manage Users---
 Route::get('admin/user','App\Http\Controllers\UserController@index')->name('user');
 Route::get('admin/userList','App\Http\Controllers\UserController@userList')->name('userList');
+Route::get('admin/editUser/{id}','App\Http\Controllers\UserController@editUser')->name('editUser');
+Route::post('admin/updateUser','App\Http\Controllers\UserController@updateUser')->name('updateUser');
+
 
 //API
 Route::post('Api/login','App\Http\Controllers\ApiController@login')->name('login');

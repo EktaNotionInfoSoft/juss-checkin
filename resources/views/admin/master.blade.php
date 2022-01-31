@@ -142,6 +142,23 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/blog') }}" class="nav-link {{ (request()->segment(2)=='blog'  OR request()->segment(2)=='add_blog' OR request()->segment(2)=='editBlog' OR request()->segment(2)=='viewBlog')? 'active':''}}">
+              <i class="nav-icon fa fa-blog"></i>
+              <p>
+                Manage Blogs
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('admin/cms') }}" class="nav-link {{ (request()->segment(2)=='cms'  OR request()->segment(2)=='add_cms' OR request()->segment(2)=='editCms' OR request()->segment(2)=='viewCms')? 'active':''}}">
+              <i class="nav-icon fa fa-file-alt"></i>
+              <p>
+                Manage CMS
+              </p>
+            </a>
+          </li>
           
         </ul>
       </nav>

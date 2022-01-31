@@ -57,13 +57,14 @@ class EmailTemplateController extends Controller
         return redirect('admin/email_template')->with('message','Email Template added Successfully');
     }
 
-    public function emailTemplateList (Request $request){
+    public function blogList (Request $request){
         if ($request->ajax()) 
         {
-            return Datatables::of($EmailTemplate = DB::table('tbl_email_template')->orderBy('id','DESC'))
+            return Datatables::of($blog = DB::table('tbl_cms')->orderBy('id','DESC'))
                 ->addColumn('action', function($row) {
-                    $btn = '<a href="editMailTemp/'. $row->id .'" class="btn btn-primary">Edit</a>';
+                    $btn = '<a href="editCms/'. $row->id .'" class="btn btn-primary">Edit</a>';
                     $btn = $btn . '<button class="btn btn-danger" id="delete" data-id="'.$row->id.'" data-toggle="modal" data-target="#modal-default">Delete</button>';
+                    $btn = $btn . '<a href="viewCms/'. $row->id .'" class="btn btn-success" id="view" data-id="'.$row->id.'">View</a>';
                     return $btn;
                 })
                 ->editColumn('status', function($row) {
@@ -75,7 +76,7 @@ class EmailTemplateController extends Controller
                     $btn .= '><span class="slider"></span></label>';
                     return $btn;
                 })
-                ->rawColumns(['status'=>'status','action' => 'action'])
+                ->rawColumns(['status'=>'status','action' => 'action','image'=>'image'])
                 ->make(true);
         }
     }
