@@ -29,7 +29,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('updateMailTemp') }}" method="POST" >
+              <form action="{{ route('updateMailTemp') }}" method="POST" id="emailForm">
                 @csrf 
                 <input type="hidden" name="id" value="{{ $email_temp->id}}">
                 <input type="hidden" name="status" value="{{ $email_temp->status}}">
@@ -78,12 +78,15 @@
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="card-footer">
-                <div class="row">
-                  <div class="col-md-2"></div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                    <div class="col-md-4"></div>
+                      <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a class="btn btn-primary btn-close" href="{{ url('admin/email_template') }}">Cancel</a>
+                      </div>
+                    </div>
+                  </div>    
                 </div>
               </form>
             </div>
@@ -93,10 +96,55 @@
   </section>
 </div>
 <script type="text/javascript" src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script>
-       CKEDITOR.replace('email_content',{
-        filebrowserUploadUrl: "{{ route('ckeditor_upload', ['_token' => csrf_token() ])}}",
-        filebrowserUploadMethod: 'form'
-      });
+CKEDITOR.replace('email_content',{
+  filebrowserUploadUrl: "{{ route('ckeditor_upload', ['_token' => csrf_token() ])}}",
+  filebrowserUploadMethod: 'form'
+});
+
+$("#emailForm").validate({
+  ignore: [],
+  debug: false,
+  rules: {
+    email_template_name: {
+  required: true,
+  },
+  subject: {
+    required: true,
+  },
+  action: {
+    required: true,
+  },
+  email_content:{
+          required: function() 
+        {
+          CKEDITOR.instances.email_content.updateElement();
+        },
+          minlength:10
+    }
+  },
+  messages: {
+    email_template_name: { 
+      required: "Please Enter Template Name"
+    },
+    subject: {
+      required: "Please Enter Subject Name"
+    },
+    action: {
+      required: "Please enter Action"
+    },
+    email_content: {
+      required: "Please Enter Email Content",
+      minlength:"Please enter 10 characters"
+    }
+
+  },
+  errorPlacement: function (error, element) { 
+    element.css('background', '#ffdddd'); 
+    error.insertAfter(element); 
+  } 
+});
 </script>
 @endsection

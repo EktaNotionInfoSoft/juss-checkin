@@ -8,6 +8,7 @@ use App\Models\SiteSetting;
 use App\Models\EmailTemplate;
 use DB;
 use DataTables;
+use Session;
 
 
 class EmailTemplateController extends Controller
@@ -59,15 +60,15 @@ class EmailTemplateController extends Controller
     public function emailTemplateList (Request $request){
         if ($request->ajax()) 
         {
-            return Datatables::of($EmailTemplate = DB::table('tbl_email_template'))
+            return Datatables::of($EmailTemplate = DB::table('tbl_email_template')->orderBy('id','DESC'))
                 ->addColumn('action', function($row) {
                     $btn = '<a href="editMailTemp/'. $row->id .'" class="btn btn-primary">Edit</a>';
-                    $btn = $btn . '<a href="deleteEmailTemp/'.$row->id.'" class="btn btn-danger">Delete</a>';
+                    $btn = $btn . '<button class="btn btn-danger" id="delete" data-id="'.$row->id.'" data-toggle="modal" data-target="#modal-default">Delete</button>';
                     return $btn;
                 })
                 ->editColumn('status', function($row) {
                     $btn = '<label class="switch">';
-                    $btn .= '<input type="checkbox" id="'.$row->id.'" class="switch" ';
+                    $btn .= '<input type="checkbox" id="'.$row->id.'" class="switch switchClass" ';
                     if ($row->status == "Active") {
                         $btn .= "checked";
                     }
@@ -81,18 +82,18 @@ class EmailTemplateController extends Controller
 
     public function changeStatus(Request $request)
     {
-       $request->validate(['status'=>'required','id'=>'required']);
         $email = EmailTemplate::find($request->id);
-        if($email){
         $email->status = $request->status;
         $email->save();
        return response()->json(['status_success'=>'Status change successfully.']);
-        }
-       return response()->json(['status_failed'=>'Status change failed.'],422);   
+    }
+    public function getId(Request $req){
+        $getId = $req->id;
+        return response()->json(['getId'=>$getId]);
     }
 
-    public function deleteEmailTemp($id){
-        $email_temp = EmailTemplate::find($id);
+    public function deleteEmailTemp(Request $req){
+        $email_temp = EmailTemplate::where('id','=',$req->id)->first();
         $email_temp->delete();
         return redirect('admin/email_template')->with('message','Email Template Deleted Successfully');
     }
@@ -110,6 +111,6 @@ class EmailTemplateController extends Controller
         $edit_tmp->email_content = $req->email_content;
         $edit_tmp->status = $req->status;
         $edit_tmp->save();
-        return redirect('admin/email_template')->with('message','Email Template added Successfully');
+        return redirect('admin/email_template')->with('message','Email Template Updated Successfully');
     }
 }

@@ -1,0 +1,146 @@
+/************************ Toggle Switch Start  *********************************/
+/* Basic Rules */
+.switch input { 
+    display:none;
+}
+.switch {
+    width: 80px;
+    height: 35px;
+    margin: 0;
+    transform: translateY(0);
+}
+/* Style Wired */
+.slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 30px;
+    box-shadow: 0 0 0 1px #D9534F, 0 0 1px #D9534F;
+    cursor: pointer;
+    border: 4px solid transparent;
+    overflow: hidden;
+    transition: .4s;
+    overflow: unset;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    overflow: hidden;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #D9534F;
+    border-radius: 30px;
+    transform: translateX(-30px);
+    transition: .4s;
+    content: "OFF";
+    text-align: right;
+    line-height: 1.3;
+    color: #fff;
+    padding-right: 6px;
+}
+input:checked + .slider:before {
+    transform: translateX(30px);
+    background: #007BFF;
+    content: "ON";
+    padding-left: 8px;
+    color: #fff;
+    text-align: left;
+}
+input:checked + .slider {
+    box-shadow: 0 0 0 1px #007bff, 0 0 1px #007bff;
+}
+
+/* Style Flat */
+.switch.flat .slider {
+ box-shadow:none;
+}
+.switch.flat .slider:before {
+  background:#FFF;
+}
+.switch.flat input:checked + .slider:before {
+ background:white;
+}
+.switch.flat input:checked + .slider {
+  background:limeGreen;
+}
+ 
+/************************ Toggle Switch End  *********************************/
+.btn {
+    padding: 2px 17px; 
+}
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-title {
+    margin-right: auto;
+    margin-bottom: 0 !important;
+}
+.card-primary:not(.card-outline)>.card-header {
+    background-color: #314960;
+}
+.table .btn:not(:last-child) {
+    margin-right: 8px;
+}
+.card .container {
+    max-width: 100%;
+}
+.table td, .table th {
+    vertical-align: middle !important;
+}
+body table.dataTable.no-footer,
+body table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid #dee2e6;
+}
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: normal;
+}
+.card .form-group label {
+    display: block;
+    text-align: right;
+}
+.card .form-group .error {
+    text-align: left;
+    color: #f92222;
+    font-size: 14px;
+}
+
+.form-control {
+    background-color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    border: 1px solid transparent;
+    background: transparent;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button .page-link:hover {
+    background-color: #999 ;
+    color: #fff;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 5px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button .page-link {
+    padding: 4px 10px;
+}
+.brand-link .brand-image {
+    width: 33px;
+    height: 33px;
+    object-fit: cover;
+    object-position: center;
+}
+.card-footer {
+    background-color: #fff;
+}
+
+
+
+
+
+
+
+
+
+

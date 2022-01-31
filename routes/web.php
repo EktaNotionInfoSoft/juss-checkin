@@ -38,9 +38,10 @@ Route::post('admin/ckeditor_upload','App\Http\Controllers\EmailTemplateControlle
 Route::post('admin/addEmailTemplateData','App\Http\Controllers\EmailTemplateController@addEmailTemplateData')->name('addEmailTemplateData');
 Route::get('admin/emailTemplateList','App\Http\Controllers\EmailTemplateController@emailTemplateList')->name('emailTemplateList');
 Route::get('admin/changeStatus','App\Http\Controllers\EmailTemplateController@changeStatus')->name('changeStatus');
-Route::get('admin/deleteEmailTemp/{id}','App\Http\Controllers\EmailTemplateController@deleteEmailTemp')->name('deleteEmailTemp');
+Route::get('admin/deleteEmailTemp','App\Http\Controllers\EmailTemplateController@deleteEmailTemp')->name('deleteEmailTemp');
 Route::get('admin/editMailTemp/{id}','App\Http\Controllers\EmailTemplateController@editMailTemp')->name('editMailTemp');
 Route::post('admin/updateMailTemp','App\Http\Controllers\EmailTemplateController@updateMailTemp')->name('updateMailTemp');
+Route::get('admin/getId','App\Http\Controllers\EmailTemplateController@getId')->name('getId');
 
 
 Route::get('admin/user','App\Http\Controllers\UserController@index')->name('user');

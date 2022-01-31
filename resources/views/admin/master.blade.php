@@ -19,6 +19,12 @@
   <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
   <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.css')}}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+  <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <link href="{{ asset('/plugins/bootstrap-switch-button/css/bootstrap-switch-button.min.css')}}" rel="stylesheet"/>  
   <link rel="stylesheet" href="{{ asset('dist/css/developer.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -94,16 +100,15 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="{{ url('admin/dashboard') }}" class="nav-link dashboard {{ (request()->segment(2)=='dashboard')? 'active':''}}">
+              <i class="nav-icon fas fa-tachometer-alt sideLink"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li>
-          
           <li class="nav-item">
-            <a href="{{ url('admin/sitesetting') }}" class="nav-link">
+            <a href="{{ url('admin/sitesetting') }}" class="nav-link {{ (request()->segment(2)=='sitesetting')? 'active':''}}">
               <i class="nav-icon fa fa-cog"></i>
               <p>
                 Site Setting
@@ -112,7 +117,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ url('admin/changepassword') }}" class="nav-link">
+            <a href="{{ url('admin/changepassword') }}" class="nav-link {{ (request()->segment(2)=='changepassword')? 'active':''}}">
               <i class="nav-icon fa fa-key"></i>
               <p>
                 Change Password
@@ -121,7 +126,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ url('admin/email_template') }}" class="nav-link">
+            <a href="{{ url('admin/email_template') }}" class="nav-link {{ (request()->segment(2)=='email_template' OR request()->segment(2)=='add_email_template' OR request()->segment(2)=='editMailTemp')? 'active':''}}">
               <i class="nav-icon fa fa-envelope"></i>
               <p>
                 Manage Email Template
@@ -130,7 +135,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ url('admin/user') }}" class="nav-link">
+            <a href="{{ url('admin/user') }}" class="nav-link {{ (request()->segment(2)=='user')? 'active':''}}">
               <i class="nav-icon fa fa-users"></i>
               <p>
                 Manage Users
@@ -193,5 +198,6 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
 </body>
 </html>
